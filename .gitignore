@@ -1,0 +1,22 @@
+# Secrets and local config
+.env
+config.local.yaml
+
+# Local data (YOUR mailbox contents - never commit)
+data/
+output/
+*.duckdb
+*.jsonl
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.venv*/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
