@@ -1,0 +1,59 @@
+# gmail-relationship-intelligence configuration
+#
+# Copy this file and fill in YOUR values. Nothing here should identify any
+# real mailbox: account IDs, spreadsheet IDs and secrets belong in your
+# local copy or environment, never in version control.
+
+gmail:
+  # Transport: "connector" uses the host runtime's connected Gmail account
+  # (no secrets needed). "oauth" uses direct Google OAuth 2.0 with the
+  # client-secrets/token files from .env (see auth.OAuthTransport).
+  transport: connector
+  accounts:
+    # Find your account_id with: $GMAIL_INTEL_GWS_CLI gmail accounts
+    # (connector transport), or use any label you like for oauth.
+    - name: personal
+      account_id: YOUR_GMAIL_ACCOUNT_ID
+      enabled: true
+    - name: work
+      account_id: YOUR_SECOND_GMAIL_ACCOUNT_ID
+      enabled: false
+  scope: https://www.googleapis.com/auth/gmail.readonly
+
+processing:
+  store_body: false               # never retain bodies by default
+  store_snippet: true
+  process_attachments: false
+  max_results_per_page: 500
+
+privacy:
+  store_email_body: false
+  store_attachments: false
+  enable_ai: false
+  mask_pii: false                 # set true to mask local-parts in logs/exports
+  allowed_ai_fields: [subject, snippet, extracted_topics]
+  exclude_labels: [SPAM, TRASH]
+  exclude_addresses: []
+  exclude_domains: []
+
+ingestion:
+  default_query: "-category:promotions -category:social -category:forums"
+  request_sleep_seconds: 0.05
+  max_retries: 5
+
+analytics:
+  relationship_scoring: true
+  network_analysis: true
+  topic_modeling: false           # needs optional NLP stack
+
+ai:
+  enabled: false
+  provider: openai                # openai | local | gemini
+  model: gpt-4o-mini
+
+google_sheets:
+  enabled: false
+  spreadsheet_id: ${GOOG_SHEETS_SPREADSHEET_ID:}
+
+database:
+  path: data/processed/gmail_intel.duckdb

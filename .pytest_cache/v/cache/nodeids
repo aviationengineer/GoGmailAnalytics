@@ -1,0 +1,14 @@
+[
+  "tests/test_analytics.py::test_frequency_band_monthly",
+  "tests/test_analytics.py::test_health_score_dormant",
+  "tests/test_analytics.py::test_health_score_explainable",
+  "tests/test_analytics.py::test_health_score_recent_strong",
+  "tests/test_contacts.py::test_gmail_dots_fold",
+  "tests/test_contacts.py::test_own_addresses_excluded",
+  "tests/test_contacts.py::test_same_name_different_stem_stays_split",
+  "tests/test_contacts.py::test_same_person_two_emails_merge",
+  "tests/test_parsing.py::test_parse_addrs",
+  "tests/test_parsing.py::test_parse_message_fields",
+  "tests/test_parsing.py::test_parse_message_sent_flag",
+  "tests/test_parsing.py::test_thread_summary"
+]
